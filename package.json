@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "dev": "node --require dotenv/config index.js"
+    },
+    "dependencies": {
+        "@line/bot-sdk": "^6.7.1",
+        "express": "^4.17.1"
+    }
+}
