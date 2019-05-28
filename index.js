@@ -7,12 +7,19 @@ const config = {
 };
 
 const app = express();
+const client = new line.Client(config);
 
 console.log("開始");
 
-app.post("/webhook", line.middleware(config), (req, res, next) => {
+app.post("/event", line.middleware(config), (req, res) => {
+    const event = req.body.events[0];
+    if (event.type !== "message") return
+    client.replyMessage(event.replyToken, {
+        type: "text",
+        text: "ここに返すメッセージを入れる",
+    });
+
     res.sendStatus(200);
-    console.log(req.body);
 });
 
 app.listen(3000);
